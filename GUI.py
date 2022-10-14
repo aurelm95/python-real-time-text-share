@@ -4,20 +4,23 @@ import threading
 from client import ShareTXT_Client
 
 class ShareTXT_GUI(ShareTXT_Client):
-    def __init__(self):
+    def __init__(self, width=80, verbose=False):
+        self.width=width
+        self.verbose=verbose
+
         self.root = tk.Tk()
         # https://stackoverflow.com/questions/6548837/how-do-i-get-an-event-callback-when-a-tkinter-entry-widget-is-modified
         self.sv = tk.StringVar()
         self.sv.trace("w", lambda name, index, mode, sv=self.sv: self.on_change_text(text=self.sv.get()))
-        self.e = tk.Entry(self.root, textvariable=self.sv, width=80)
+        self.e = tk.Entry(self.root, textvariable=self.sv, width=self.width)
         self.e.pack()
-        # print(self.__class__,"initialized")
 
         self.last_text_was_recieved=False
         
     
     def on_change_text(self,text):
-        print("on_change_text(): text:",text,"last_text_was_recieved:",self.last_text_was_recieved,end="\r")
+        if self.verbose:
+            print("on_change_text(): text:",text,"last_text_was_recieved:",self.last_text_was_recieved,end="\r")
         if self.last_text_was_recieved:
             self.last_text_was_recieved=False
             return
