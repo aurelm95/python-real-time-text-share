@@ -10,7 +10,7 @@ class ShareTXT_Client():
         pass
     
     async def connect_websocket(self):
-        async with websockets.connect("wss://sharetxt.live") as self.websocket:
+        async with websockets.connect("wss://sharetxt.tk") as self.websocket:
             print("conexion iniciada")
             await self.websocket.send(json.dumps({"roomName":"default", "type":"connection"}))
             while True:
