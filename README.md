@@ -1,4 +1,4 @@
-# ShareTXT_python_app
+# python-real-time-text-share
 
 This project aims to be used as a python module to share text in real time. This is done by connecting through websockets to the server https://sharetxt.live/default.
 
